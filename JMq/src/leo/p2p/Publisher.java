@@ -19,7 +19,7 @@ public class Publisher {
 
 	public Publisher() throws JMSException {
 		jobs=new String[]{"jim","tom","cat"};
-		factory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+		factory = new ActiveMQConnectionFactory("failover:(tcp://localhost:61616?wireFormat.maxInactivityDuration=0,tcp://localhost:61617?wireFormat.maxInactivityDuration=0)");
 		connection = factory.createConnection();
 		connection.start();
 		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);

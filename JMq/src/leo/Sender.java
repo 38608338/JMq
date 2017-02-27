@@ -7,10 +7,12 @@ import javax.jms.Destination;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
+
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 public class Sender {
+	private static final String TCP_LOCALHOST = "failover:(tcp://localhost:61616?wireFormat.maxInactivityDuration=0,tcp://localhost:61617?wireFormat.maxInactivityDuration=0)";
     private static final int SEND_NUMBER = 5;
 
     public static void main(String[] args) {
@@ -29,7 +31,7 @@ public class Sender {
         connectionFactory = new ActiveMQConnectionFactory(
                 ActiveMQConnection.DEFAULT_USER,
                 ActiveMQConnection.DEFAULT_PASSWORD,
-                "tcp://localhost:61616");
+                TCP_LOCALHOST);
         try {
             // 构造从工厂得到连接对象
             connection = connectionFactory.createConnection();

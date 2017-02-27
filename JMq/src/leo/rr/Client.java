@@ -24,7 +24,7 @@ public class Client implements MessageListener {
     }
 
 	public void send(String data) {
-		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");  
+		ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("failover:(tcp://localhost:61616?wireFormat.maxInactivityDuration=0,tcp://localhost:61617?wireFormat.maxInactivityDuration=0)");  
         Connection connection = null;  
         try {  
             connection = connectionFactory.createConnection();  

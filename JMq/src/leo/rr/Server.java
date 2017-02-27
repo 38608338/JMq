@@ -16,7 +16,7 @@ import org.apache.activemq.broker.BrokerService;
 
 public class Server implements MessageListener {
 	private MessageProtocol messageProtocol;
-	private String messageBrokerUrl="tcp://localhost:61616";
+	private String messageBrokerUrl="failover:(tcp://localhost:61616?wireFormat.maxInactivityDuration=0,tcp://localhost:61617?wireFormat.maxInactivityDuration=0)";
 	private Session session;
 	private MessageProducer replyProducer;
 
