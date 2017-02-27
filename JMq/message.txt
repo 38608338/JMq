@@ -1,4 +1,13 @@
 Master-Slave的方式虽然能解决多服务热备的高可用问题，但无法解决负载均衡和分布式的问题
+1.failover:(tcp://localhost:61616,tcp://localhost:61617...)能重定向到任意一台可用服务
+2.<kahaDB directory="共享目录/kahadb"/>解决了热备和高可用，即便使用中服务挂掉也能重定向到另一台服务
+因为当第一台服务启动后锁定kahaDB，另外的服务处于挂起状态。当第一台服务关停后，备用服务才启动，这时调用端
+无法连接到备用服务，直到备用服务启动起来，这样不会导致消息挂起不能处理的问题。
+3.<networkConnector uri="static:(tcp://localhost:61616)" duplex="true"/>解决了负载均衡的问题，多台服务启动后
+服务与服务通过networkConnector建立起连接，均衡接收消息到topic里进行处理。
+4.通过上述3种方式结合，可以实现（热备、高可用和负载均衡）的服务器集群，客户端通过failover调用服务端，
+该配置方式需要3台以上服务。
+
 jetty.xml 修改端口
     <bean id="jettyPort" class="org.apache.activemq.web.WebConsolePort" init-method="start">
              <!-- the default port number for the web console -->
@@ -66,7 +75,7 @@ MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
 ]]></body>
 </service> 
 
-测试结果：实现了解决多服务热备和高可用的问题
+测试结果：实现了任意一台服务挂掉，均能正常使用，但正在使用中服务挂掉会导致调用端挂起，出现卡死情况。
 Queues
 Name   Number Of Pending Messages   Number Of Consumers   Messages Enqueued   Messages Dequeued   Views   Operations   
 dzswj.queue 0 1 92 111 
@@ -74,8 +83,21 @@ Queues
 Name   Number Of Pending Messages   Number Of Consumers   Messages Enqueued   Messages Dequeued   Views   Operations   
 dzswj.queue 19 1 108 99
 
-存在问题：无法解决负载均衡。
+存在问题：高可用和无法解决负载均衡。
 
+ 1）shared filesystem Master-Slave部署方式配置：	
+        <persistenceAdapter>
+            <kahaDB directory="D:/apache-activemq-5.14.3/data/kahadb"/>
+        </persistenceAdapter>
+第二个MQ启动时提示：
+	 INFO | Database D:\apache-activemq-5.14.3\data\kahadb\lock is locked by another
+ server. This broker is now in slave mode waiting a lock to be acquired
+ 
+ 2）shared database Master-Slave方式
+         与shared filesystem方式类似，只是共享的存储介质由文件系统改成了数据库而已。
+ 3）Replicated LevelDB Store方式
+         这种主备方式是ActiveMQ5.9以后才新增的特性，使用ZooKeeper协调选择一个node作为master。被选择的master broker node开启并接受客户端连接。
+         
 Broker-Cluster的部署方式
 activemq.xml文件(61617)修改
 
@@ -155,15 +177,3 @@ MQ启动时报错
 	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
 	测试结果：只有一个mq服务队列收到消息，两个topic均有内容，实现了服务热备，但未实现高可用，出现了丢消息的情况
 	
- 1）shared filesystem Master-Slave部署方式配置：	
-        <persistenceAdapter>
-            <kahaDB directory="D:/apache-activemq-5.14.3/data/kahadb"/>
-        </persistenceAdapter>
-第二个MQ启动时提示：
-	 INFO | Database D:\apache-activemq-5.14.3\data\kahadb\lock is locked by another
- server. This broker is now in slave mode waiting a lock to be acquired
- 
- 2）shared database Master-Slave方式
-         与shared filesystem方式类似，只是共享的存储介质由文件系统改成了数据库而已。
- 3）Replicated LevelDB Store方式
-         这种主备方式是ActiveMQ5.9以后才新增的特性，使用ZooKeeper协调选择一个node作为master。被选择的master broker node开启并接受客户端连接。
