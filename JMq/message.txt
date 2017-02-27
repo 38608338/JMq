@@ -111,7 +111,7 @@ activemq.xml文件(61617)修改
         
     调用端配置
 	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
-	测试结果：两个mq服务队列均收到消息
+	测试结果：两个mq服务队列均收到消息，两个topic均有内容，实现了服务热备，但未实现高可用，出现了丢消息和卡死的情况
 
 配置如下：
 						<networkConnector uri="static:(tcp://0.0.0.0:61616)" duplex="true" />
@@ -123,7 +123,7 @@ MQ启动时报错
 						<networkConnector uri="static:(tcp://0.0.0.0:61617)" duplex="false" />
     调用端配置
 	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
-	测试结果：只有一个mq服务队列收到消息，但实现了服务热备
+	测试结果：只有一个mq服务队列收到消息，两个topic均有内容，实现了服务热备，但未实现高可用，出现了丢消息的情况
 	
 配置如下：
 						<networkConnector uri="multicast://default" duplex="true" />
@@ -153,7 +153,7 @@ MQ启动时报错
         </transportConnectors>
     调用端配置
 	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
-	测试结果：只有一个mq服务队列收到消息，但实现了服务热备
+	测试结果：只有一个mq服务队列收到消息，两个topic均有内容，实现了服务热备，但未实现高可用，出现了丢消息的情况
 	
  1）shared filesystem Master-Slave部署方式配置：	
         <persistenceAdapter>
