@@ -17,7 +17,7 @@ activemq.xml文件 修改端口
         </transportConnectors>
         
     调用端配置
-	URL=failover:(tcp://localhost:61616?wireFormat.maxInactivityDuration=0,tcp://localhost:61617?wireFormat.maxInactivityDuration=0)
+	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)
 
 	实例测试：
 信息: Server startup in 37583 ms
@@ -87,3 +87,40 @@ MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
 
 测试结果：实现了解决多服务热备的高可用问题
 存在问题：无法解决负载均衡。
+
+Broker-Cluster的部署方式
+activemq.xml文件(61617)修改
+
+    <broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" dataDirectory="${activemq.data}">
+			<networkConnectors>
+						<networkConnector uri="static:(tcp://0.0.0.0:61616)" duplex="true" />
+			</networkConnectors>
+			...
+		<transportConnectors>
+            <!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB -->
+            <transportConnector name="openwire" uri="tcp://0.0.0.0:61617?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="amqp" uri="amqp://0.0.0.0:5682?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="stomp" uri="stomp://0.0.0.0:61623?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="mqtt" uri="mqtt://0.0.0.0:1893?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="ws" uri="ws://0.0.0.0:61624?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+        </transportConnectors>
+
+(61616)修改        
+
+    <broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" dataDirectory="${activemq.data}">
+			<networkConnectors>
+						<!-- <networkConnector uri="static:(tcp://0.0.0.0:61617)" duplex="false" /> -->
+			</networkConnectors>
+			...
+        <transportConnectors>
+            <!-- DOS protection, limit concurrent connections to 1000 and frame size to 100MB -->
+            <transportConnector name="openwire" uri="tcp://0.0.0.0:61616?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="amqp" uri="amqp://0.0.0.0:5672?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="stomp" uri="stomp://0.0.0.0:61613?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="mqtt" uri="mqtt://0.0.0.0:1883?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+            <transportConnector name="ws" uri="ws://0.0.0.0:61614?maximumConnections=1000&amp;wireFormat.maxFrameSize=104857600"/>
+        </transportConnectors>
+        
+    调用端配置
+	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
+	测试结果：两个mq服务队列均收到消息
