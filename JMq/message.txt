@@ -1,0 +1,152 @@
+二月 27, 2017 9:46:21 上午 org.apache.catalina.core.AprLifecycleListener init
+信息: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: C:\Program Files (x86)\Java\jdk1.7.0_67\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files (x86)/Java/jre7/bin/client;C:/Program Files (x86)/Java/jre7/bin;C:/Program Files (x86)/Java/jre7/lib/i386;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Java\jdk1.7.0_67\bin;D:\eclipse4.3(kepler);;.
+二月 27, 2017 9:46:21 上午 org.apache.tomcat.util.digester.SetPropertiesRule begin
+警告: [SetPropertiesRule]{Server/Service/Engine/Host/Context} Setting property 'source' to 'org.eclipse.jst.jee.server:InsideMQ' did not find a matching property.
+二月 27, 2017 9:46:21 上午 org.apache.tomcat.util.digester.SetPropertiesRule begin
+警告: [SetPropertiesRule]{Server/Service/Engine/Host/Context} Setting property 'source' to 'org.eclipse.jst.jee.server:OutsideMQ' did not find a matching property.
+二月 27, 2017 9:46:22 上午 org.apache.coyote.AbstractProtocol init
+信息: Initializing ProtocolHandler ["http-bio-8080"]
+二月 27, 2017 9:46:22 上午 org.apache.coyote.AbstractProtocol init
+信息: Initializing ProtocolHandler ["ajp-bio-8009"]
+二月 27, 2017 9:46:22 上午 org.apache.catalina.startup.Catalina load
+信息: Initialization processed in 1335 ms
+二月 27, 2017 9:46:22 上午 org.apache.catalina.core.StandardService startInternal
+信息: Starting service Catalina
+二月 27, 2017 9:46:22 上午 org.apache.catalina.core.StandardEngine startInternal
+信息: Starting Servlet Engine: Apache Tomcat/7.0.56
+二月 27, 2017 9:46:23 上午 org.apache.catalina.util.SessionIdGenerator createSecureRandom
+信息: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [495] milliseconds.
+二月 27, 2017 9:46:24 上午 org.apache.catalina.loader.WebappClassLoader validateJarFile
+信息: validateJarFile(C:\Users\Administrator\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\InsideMQ\WEB-INF\lib\servlet-api.jar) - jar not loaded. See Servlet Spec 3.0, section 10.7.2. Offending class: javax/servlet/Servlet.class
+二月 27, 2017 9:46:32 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+二月 27, 2017 9:46:32 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+2017-02-27 09:46:32,442-[yngs] INFO localhost-startStop-1 org.springframework.web.context.ContextLoader.initWebApplicationContext(285) | Root WebApplicationContext: initialization started
+   2017-02-27 09:46:32,602-[yngs] INFO localhost-startStop-1 org.springframework.context.support.AbstractApplicationContext.prepareRefresh(514) | Refreshing Root WebApplicationContext: startup date [Mon Feb 27 09:46:32 CST 2017]; root of context hierarchy
+   2017-02-27 09:46:32,727-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from URL [file:/C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/InsideMQ/WEB-INF/classes/applicationContext.xml]
+   2017-02-27 09:46:33,270-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from URL [file:/C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/InsideMQ/WEB-INF/classes/applicationContext-cxf.xml]
+   2017-02-27 09:46:33,389-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [META-INF/cxf/cxf.xml]
+   2017-02-27 09:46:33,412-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [META-INF/cxf/cxf-servlet.xml]
+   2017-02-27 09:46:33,439-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from URL [file:/C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/InsideMQ/WEB-INF/classes/activeMQ.xml]
+   2017-02-27 09:46:41,462-[yngs] INFO localhost-startStop-1 org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(172) | Loading properties file from class path resource [mq.properties]
+   2017-02-27 09:46:41,674-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(315) | Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+   2017-02-27 09:46:42,010-[yngs] INFO localhost-startStop-1 org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean.buildServiceFromClass(434) | Creating Service {http://webservice.cxf.zxt.com}DzswjWebserviceService from class com.zxt.cxf.webservice.DzswjWebservice
+   2017-02-27 09:46:43,492-[yngs] INFO localhost-startStop-1 org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(341) | Starting beans in phase 2147483647
+   2017-02-27 09:46:43,669-[yngs] INFO localhost-startStop-1 org.springframework.jms.connection.SingleConnectionFactory.initConnection(311) | Established shared JMS Connection: ActiveMQConnection {id=ID:WIN-20160308JCX-52175-1488160003546-1:1,clientId=null,started=false}
+   2017-02-27 09:46:43,872-[yngs] INFO ActiveMQ Task-1 org.apache.activemq.transport.failover.FailoverTransport.doReconnect(1052) | Successfully connected to tcp://localhost:61617?wireFormat.maxInactivityDuration=0
+   2017-02-27 09:46:44,081-[yngs] INFO localhost-startStop-1 org.springframework.web.context.ContextLoader.initWebApplicationContext(325) | Root WebApplicationContext: initialization completed in 11618 ms
+   二月 27, 2017 9:46:44 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'InsideMQ.root' = [C:\Users\Administrator\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\InsideMQ\]
+二月 27, 2017 9:46:44 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [classpath:log4j.properties]
+二月 27, 2017 9:46:44 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'springmvc'
+2017-02-27 09:46:44,162-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.FrameworkServlet.initServletBean(484) | FrameworkServlet 'springmvc': initialization started
+   2017-02-27 09:46:44,168-[yngs] INFO localhost-startStop-1 org.springframework.context.support.AbstractApplicationContext.prepareRefresh(514) | Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Mon Feb 27 09:46:44 CST 2017]; parent: Root WebApplicationContext
+   2017-02-27 09:46:44,171-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [spring-mvc.xml]
+   2017-02-27 09:46:44,693-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.initControllerAdviceCache(523) | Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Mon Feb 27 09:46:44 CST 2017]; parent: Root WebApplicationContext
+   2017-02-27 09:46:44,763-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.initControllerAdviceCache(523) | Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Mon Feb 27 09:46:44 CST 2017]; parent: Root WebApplicationContext
+   2017-02-27 09:46:44,835-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(315) | Mapped URL path [/login.jsp] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+   2017-02-27 09:46:44,910-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.FrameworkServlet.initServletBean(503) | FrameworkServlet 'springmvc': initialization completed in 747 ms
+   二月 27, 2017 9:46:46 上午 org.apache.catalina.loader.WebappClassLoader validateJarFile
+信息: validateJarFile(C:\Users\Administrator\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\OutsideMQ\WEB-INF\lib\servlet-api.jar) - jar not loaded. See Servlet Spec 3.0, section 10.7.2. Offending class: javax/servlet/Servlet.class
+二月 27, 2017 9:46:54 上午 org.apache.catalina.core.ApplicationContext log
+信息: No Spring WebApplicationInitializer types detected on classpath
+二月 27, 2017 9:46:54 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring root WebApplicationContext
+2017-02-27 09:46:54,765-[yngs] INFO localhost-startStop-1 org.springframework.web.context.ContextLoader.initWebApplicationContext(285) | Root WebApplicationContext: initialization started
+   2017-02-27 09:46:54,902-[yngs] INFO localhost-startStop-1 org.springframework.context.support.AbstractApplicationContext.prepareRefresh(514) | Refreshing Root WebApplicationContext: startup date [Mon Feb 27 09:46:54 CST 2017]; root of context hierarchy
+   2017-02-27 09:46:54,970-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from URL [file:/C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/OutsideMQ/WEB-INF/classes/applicationContext.xml]
+   2017-02-27 09:46:55,364-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from URL [file:/C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/OutsideMQ/WEB-INF/classes/applicationContext-cxf.xml]
+   2017-02-27 09:46:55,437-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [META-INF/cxf/cxf.xml]
+   2017-02-27 09:46:55,456-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [META-INF/cxf/cxf-servlet.xml]
+   2017-02-27 09:46:55,519-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from URL [file:/C:/Users/Administrator/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/OutsideMQ/WEB-INF/classes/activeMQ.xml]
+   2017-02-27 09:46:57,279-[yngs] INFO localhost-startStop-1 org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(172) | Loading properties file from class path resource [mq.properties]
+   2017-02-27 09:46:57,408-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(315) | Mapped URL path [/**] onto handler 'org.springframework.web.servlet.resource.DefaultServletHttpRequestHandler#0'
+   2017-02-27 09:46:57,904-[yngs] INFO localhost-startStop-1 org.apache.cxf.wsdl.service.factory.ReflectionServiceFactoryBean.buildServiceFromClass(434) | Creating Service {http://interfaces.mq.tax.com}MqSendService from class com.tax.mq.service.MqSend
+   2017-02-27 09:46:59,055-[yngs] INFO localhost-startStop-1 org.apache.cxf.endpoint.ServerImpl.initDestination(85) | Setting the server's publish address to be /mqSend
+   2017-02-27 09:46:59,082-[yngs] INFO localhost-startStop-1 org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(341) | Starting beans in phase 2147483647
+   2017-02-27 09:46:59,087-[yngs] INFO localhost-startStop-1 org.springframework.web.context.ContextLoader.initWebApplicationContext(325) | Root WebApplicationContext: initialization completed in 4317 ms
+   二月 27, 2017 9:46:59 上午 org.apache.catalina.core.ApplicationContext log
+信息: Set web app root system property: 'OutsideMQ.root' = [C:\Users\Administrator\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\OutsideMQ\]
+二月 27, 2017 9:46:59 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing log4j from [classpath:log4j.properties]
+二月 27, 2017 9:46:59 上午 org.apache.catalina.core.ApplicationContext log
+信息: Initializing Spring FrameworkServlet 'springmvc'
+2017-02-27 09:46:59,127-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.FrameworkServlet.initServletBean(484) | FrameworkServlet 'springmvc': initialization started
+   2017-02-27 09:46:59,130-[yngs] INFO localhost-startStop-1 org.springframework.context.support.AbstractApplicationContext.prepareRefresh(514) | Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Mon Feb 27 09:46:59 CST 2017]; parent: Root WebApplicationContext
+   2017-02-27 09:46:59,131-[yngs] INFO localhost-startStop-1 org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(317) | Loading XML bean definitions from class path resource [spring-mvc.xml]
+   2017-02-27 09:46:59,525-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.initControllerAdviceCache(523) | Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Mon Feb 27 09:46:59 CST 2017]; parent: Root WebApplicationContext
+   2017-02-27 09:46:59,598-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.initControllerAdviceCache(523) | Looking for @ControllerAdvice: WebApplicationContext for namespace 'springmvc-servlet': startup date [Mon Feb 27 09:46:59 CST 2017]; parent: Root WebApplicationContext
+   2017-02-27 09:46:59,666-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(315) | Mapped URL path [/login.jsp] onto handler of type [class org.springframework.web.servlet.mvc.ParameterizableViewController]
+   2017-02-27 09:46:59,741-[yngs] INFO localhost-startStop-1 org.springframework.web.servlet.FrameworkServlet.initServletBean(503) | FrameworkServlet 'springmvc': initialization completed in 614 ms
+   二月 27, 2017 9:46:59 上午 org.apache.coyote.AbstractProtocol start
+信息: Starting ProtocolHandler ["http-bio-8080"]
+二月 27, 2017 9:46:59 上午 org.apache.coyote.AbstractProtocol start
+信息: Starting ProtocolHandler ["ajp-bio-8009"]
+二月 27, 2017 9:46:59 上午 org.apache.catalina.startup.Catalina start
+信息: Server startup in 37583 ms
+2017-02-27 09:47:43,393-[yngs] INFO http-bio-8080-exec-3 org.springframework.jms.connection.SingleConnectionFactory.initConnection(311) | Established shared JMS Connection: ActiveMQConnection {id=ID:WIN-20160308JCX-52194-1488160063271-1:1,clientId=null,started=false}
+   2017-02-27 09:47:43,516-[yngs] INFO ActiveMQ Task-1 org.apache.activemq.transport.failover.FailoverTransport.doReconnect(1052) | Successfully connected to tcp://localhost:61617?wireFormat.maxInactivityDuration=0
+   MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
+<service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <head>
+  <service_id>DZSWJ.JY.YHDL</service_id>
+  <system_id>zxt.app</system_id>
+  <tran_seq>9e327d166c174bb28c95ae5a66d82bc4</tran_seq>
+  <reqCode>text</reqCode>
+  <ciphetext/>
+  <tran_date>20161121</tran_date>
+  <tran_time>083844625</tran_time>
+ </head>
+ <body><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<zxtRoot>
+ <phone>13700000000</phone>
+ <onLineSign>7e93f36c81f140b9b6ee358817e204e4</onLineSign>
+ <password>NjU0MzIx=</password>
+</zxtRoot>
+]]></body>
+</service> 
+MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
+<service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <head>
+  <service_id>DZSWJ.JY.YHDL</service_id>
+  <system_id>zxt.app</system_id>
+  <tran_seq>9e327d166c174bb28c95ae5a66d82bc4</tran_seq>
+  <reqCode>text</reqCode>
+  <ciphetext/>
+  <tran_date>20161121</tran_date>
+  <tran_time>083844625</tran_time>
+ </head>
+ <body><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<zxtRoot>
+ <phone>13700000000</phone>
+ <onLineSign>7e93f36c81f140b9b6ee358817e204e4</onLineSign>
+ <password>NjU0MzIx=</password>
+</zxtRoot>
+]]></body>
+</service> 
+2017-02-27 09:49:01,102-[yngs] WARN ActiveMQ Transport: tcp://localhost/127.0.0.1:61617@52176 org.apache.activemq.transport.failover.FailoverTransport.handleTransportFailure(280) | Transport (tcp://localhost:61617?wireFormat.maxInactivityDuration=0) failed , attempting to automatically reconnect: java.io.EOFException
+   2017-02-27 09:49:01,113-[yngs] WARN ActiveMQ Transport: tcp://localhost/127.0.0.1:61617@52195 org.apache.activemq.transport.failover.FailoverTransport.handleTransportFailure(280) | Transport (tcp://localhost:61617?wireFormat.maxInactivityDuration=0) failed , attempting to automatically reconnect: java.io.EOFException
+   2017-02-27 09:49:01,348-[yngs] INFO ActiveMQ Task-3 org.apache.activemq.transport.failover.FailoverTransport.doReconnect(1054) | Successfully reconnected to tcp://localhost:61616?wireFormat.maxInactivityDuration=0
+   2017-02-27 09:49:01,350-[yngs] INFO ActiveMQ Task-3 org.apache.activemq.transport.failover.FailoverTransport.doReconnect(1054) | Successfully reconnected to tcp://localhost:61616?wireFormat.maxInactivityDuration=0
+   MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
+<service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <head>
+  <service_id>DZSWJ.JY.YHDL</service_id>
+  <system_id>zxt.app</system_id>
+  <tran_seq>9e327d166c174bb28c95ae5a66d82bc4</tran_seq>
+  <reqCode>text</reqCode>
+  <ciphetext/>
+  <tran_date>20161121</tran_date>
+  <tran_time>083844625</tran_time>
+ </head>
+ <body><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<zxtRoot>
+ <phone>13700000000</phone>
+ <onLineSign>7e93f36c81f140b9b6ee358817e204e4</onLineSign>
+ <password>NjU0MzIx=</password>
+</zxtRoot>
+]]></body>
+</service> 
