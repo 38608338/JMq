@@ -23,25 +23,6 @@ activemq.xml文件 修改端口
 信息: Server startup in 37583 ms
 2017-02-27 09:47:43,393-[yngs] INFO http-bio-8080-exec-3 org.springframework.jms.connection.SingleConnectionFactory.initConnection(311) | Established shared JMS Connection: ActiveMQConnection {id=ID:WIN-20160308JCX-52194-1488160063271-1:1,clientId=null,started=false}
    2017-02-27 09:47:43,516-[yngs] INFO ActiveMQ Task-1 org.apache.activemq.transport.failover.FailoverTransport.doReconnect(1052) | Successfully connected to tcp://localhost:61617?wireFormat.maxInactivityDuration=0
-   MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
-<service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
- <head>
-  <service_id>DZSWJ.JY.YHDL</service_id>
-  <system_id>zxt.app</system_id>
-  <tran_seq>9e327d166c174bb28c95ae5a66d82bc4</tran_seq>
-  <reqCode>text</reqCode>
-  <ciphetext/>
-  <tran_date>20161121</tran_date>
-  <tran_time>083844625</tran_time>
- </head>
- <body><![CDATA[<?xml version="1.0" encoding="utf-8"?>
-<zxtRoot>
- <phone>13700000000</phone>
- <onLineSign>7e93f36c81f140b9b6ee358817e204e4</onLineSign>
- <password>NjU0MzIx=</password>
-</zxtRoot>
-]]></body>
-</service> 
 MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
 <service xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
  <head>
@@ -85,7 +66,14 @@ MQ内网接收到消息:<?xml version="1.0" encoding="utf-8"?>
 ]]></body>
 </service> 
 
-测试结果：实现了解决多服务热备的高可用问题
+测试结果：实现了解决多服务热备和高可用的问题
+Queues
+Name   Number Of Pending Messages   Number Of Consumers   Messages Enqueued   Messages Dequeued   Views   Operations   
+dzswj.queue 0 1 92 111 
+Queues
+Name   Number Of Pending Messages   Number Of Consumers   Messages Enqueued   Messages Dequeued   Views   Operations   
+dzswj.queue 19 1 108 99
+
 存在问题：无法解决负载均衡。
 
 Broker-Cluster的部署方式
@@ -135,7 +123,7 @@ MQ启动时报错
 						<networkConnector uri="static:(tcp://0.0.0.0:61617)" duplex="false" />
     调用端配置
 	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
-	测试结果：只有一个mq服务队列收到消息
+	测试结果：只有一个mq服务队列收到消息，但实现了服务热备
 	
 配置如下：
 						<networkConnector uri="multicast://default" duplex="true" />
@@ -165,4 +153,17 @@ MQ启动时报错
         </transportConnectors>
     调用端配置
 	URL=failover:(tcp://localhost:61616,tcp://localhost:61617)      
-	测试结果：只有一个mq服务队列收到消息
+	测试结果：只有一个mq服务队列收到消息，但实现了服务热备
+	
+ 1）shared filesystem Master-Slave部署方式配置：	
+        <persistenceAdapter>
+            <kahaDB directory="D:/apache-activemq-5.14.3/data/kahadb"/>
+        </persistenceAdapter>
+第二个MQ启动时提示：
+	 INFO | Database D:\apache-activemq-5.14.3\data\kahadb\lock is locked by another
+ server. This broker is now in slave mode waiting a lock to be acquired
+ 
+ 2）shared database Master-Slave方式
+         与shared filesystem方式类似，只是共享的存储介质由文件系统改成了数据库而已。
+ 3）Replicated LevelDB Store方式
+         这种主备方式是ActiveMQ5.9以后才新增的特性，使用ZooKeeper协调选择一个node作为master。被选择的master broker node开启并接受客户端连接。
