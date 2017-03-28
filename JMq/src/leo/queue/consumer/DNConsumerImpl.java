@@ -51,7 +51,7 @@ public class DNConsumerImpl implements DNConsumer {
 
 			while (true) {
 				TextMessage message = (TextMessage) consumer.receive();
-				Thread.sleep(100);
+				Thread.sleep(1500);
 				
 				if (message != null) {
 					message.acknowledge();
@@ -62,6 +62,21 @@ public class DNConsumerImpl implements DNConsumer {
 			}
 
 		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void init(String url) {
+		try {
+			connectionFactory = new ActiveMQConnectionFactory(USERNAME,
+					PASSWORD, url);
+			connection = connectionFactory.createConnection();
+			connection.start();
+
+			session = connection
+					.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		} catch (JMSException e) {
 			e.printStackTrace();
 		}
 	}

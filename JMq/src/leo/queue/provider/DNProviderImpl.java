@@ -78,4 +78,19 @@ public class DNProviderImpl implements DNProvider {
 		}
 	}
 
+	@Override
+	public void init(String url) {
+		try {
+			connectionFactory = new ActiveMQConnectionFactory(USERNAME,
+					PASSWORD, url);
+			connection = connectionFactory.createConnection();
+			connection.start();
+
+			session = connection
+					.createSession(true, Session.SESSION_TRANSACTED);
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
