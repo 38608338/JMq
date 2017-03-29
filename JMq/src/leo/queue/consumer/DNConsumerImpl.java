@@ -1,10 +1,15 @@
 package leo.queue.consumer;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
+import javax.jms.MessageProducer;
 import javax.jms.Queue;
 import javax.jms.Session;
 import javax.jms.TextMessage;
@@ -21,6 +26,7 @@ public class DNConsumerImpl implements DNConsumer {
 	private Connection connection;
 	private Session session;
 	private ThreadLocal<MessageConsumer> tl=new ThreadLocal<MessageConsumer>();
+	private ThreadLocal<MessageProducer> tl2=new ThreadLocal<MessageProducer>();
 	
 	@Override
 	public void init() {
@@ -48,6 +54,14 @@ public class DNConsumerImpl implements DNConsumer {
 				consumer = session.createConsumer(queue);
 				tl.set(consumer);
 			}
+            MessageProducer replyProducer;
+			if (tl2.get() !=null) {
+				replyProducer=tl2.get();
+			} else {
+				replyProducer = this.session.createProducer(null);  
+	            replyProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);  
+				tl2.set(replyProducer);
+			}
 
 			while (true) {
 				TextMessage message = (TextMessage) consumer.receive();
@@ -55,7 +69,18 @@ public class DNConsumerImpl implements DNConsumer {
 				
 				if (message != null) {
 					message.acknowledge();
-					System.out.println(Thread.currentThread().getName()+ " Consumer:我是消费者：我接收的消息内容是：" + message.getText());
+					System.out.println(new SimpleDateFormat("HH:mm:ss").format(new Date())+" "+queue+" "+ Thread.currentThread().getName()+ " Consumer:我是消费者：我接收的消息内容是：" + message.getText());
+					
+					try{
+			            TextMessage response = this.session.createTextMessage();  
+			            response.setJMSCorrelationID(message.getJMSCorrelationID());  
+			            String xx = new SimpleDateFormat("HH:mm:ss").format(new Date())+" "+message.getJMSReplyTo()+ "回复了::"+message.getText();
+						response.setText(xx);
+			            replyProducer.send(message.getJMSReplyTo(), response);  
+			            System.out.println(xx);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 				} else {
 					break;
 				}
